@@ -67,8 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
-
+    'timezone' => 'America/El_Salvador',
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration
@@ -80,7 +79,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +168,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        LaraDex\Providers\AppServiceProvider::class,
+        LaraDex\Providers\AuthServiceProvider::class,
+        // LaraDex\Providers\BroadcastServiceProvider::class,
+        LaraDex\Providers\EventServiceProvider::class,
+        LaraDex\Providers\RouteServiceProvider::class,
 
     ],
 
