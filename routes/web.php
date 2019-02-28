@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*
-----Probando rutas en laravel------
+Route::get('prueba/{name}', 'PruebaController@prueba');
+
+/* ----Probando rutas en laravel------ */
 
 Route::get('/name/{name}/lastname/{lastname}', function($name, $lastname){
     return 'Hola soy '.$name .$lastname;
@@ -25,4 +26,5 @@ Route::get('/name/{name}/lastname/{lastname}', function($name, $lastname){
 Route::get('/mi_primera_ruta', function(){
     return 'Hello World. Esta es mi primera ruta';
 });
-*/
+
+Route::resource('trainers', 'TrainerController');
