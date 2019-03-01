@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Route::get('prueba/{name}', 'PruebaController@prueba');
-
 /* ----Probando rutas en laravel------ */
 
 Route::get('/name/{name}/lastname/{lastname}', function($name, $lastname){
