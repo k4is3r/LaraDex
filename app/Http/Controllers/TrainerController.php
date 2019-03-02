@@ -56,7 +56,8 @@ class TrainerController extends Controller
      */
     public function show($id)
     {
-        //
+        $trainer = Trainer::find($id);
+        return view('trainers.show', compact('trainer'));
     }
 
     /**
