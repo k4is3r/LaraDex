@@ -43,6 +43,7 @@ class TrainerController extends Controller
         $trainer = new Trainer();
         $trainer ->name= $request->input('name');
         $trainer->avatar= $name;
+        $trainer->slug= $request->input('slug');
         $trainer -> save();
         return 'Datos Almacenados... gracias';
         
