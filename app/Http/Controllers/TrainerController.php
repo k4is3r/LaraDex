@@ -4,6 +4,8 @@ namespace LaraDex\Http\Controllers;
 
 use LaraDex\Trainer;
 use Illuminate\Http\Request;
+use LaraDex\Http\Requests\StoreTrainerRequest;
+
 
 class TrainerController extends Controller
 {
@@ -33,14 +35,8 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTrainerRequest $request)
     {
-        $validateData = $request->validate([
-            'name' => 'required|max: 10',
-            'avatar' => 'required|image',
-            'slug' => 'required'
-        ]);
-        
         $trainer = new Trainer();
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
@@ -51,8 +47,7 @@ class TrainerController extends Controller
         $trainer->avatar= $name;
         $trainer->slug= $request->input('slug');
         $trainer -> save();
-        return 'Datos Almacenados... gracias';
-        
+        return redirect()->route('trainers.index');    
     }
 
     /**
@@ -94,7 +89,7 @@ class TrainerController extends Controller
             $file->move(public_path().'/images/',$name);
         }
         $trainer->save();
-        return 'Entrenador actualizado';
+        return redirect()->route('trainers.show',[$trainer])->with('status','Entrenador Actualizado correctamente');
     }
 
     /**
@@ -103,8 +98,11 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainer $trainer)
     {
-        //
+        $file_path = public_path().'/images/'.$trainer->avatar;
+        \File::delete($file_path);
+        $trainer->delete();
+        return redirect()->route('trainers.index');
     }
 }
